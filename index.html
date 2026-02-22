@@ -683,37 +683,90 @@
   <script>
     
 // ---------------- TAB EVENTS ----------------
-const tabs = document.querySelectorAll(".tab");
+    const tabs = document.querySelectorAll(".tab");
 
-tabs.forEach(tab => {
+    tabs.forEach(tab => {
 
-tab.onclick = () => {
+    tab.onclick = () => {
 
-// remove active from all
+    // remove active from all
 
-tabs.forEach(t => {
+    tabs.forEach(t => {
 
-t.classList.remove("tab-active");
+    t.classList.remove("tab-active");
 
-t.classList.remove("active-tab");
+    t.classList.remove("active-tab");
 
-});
+    });
 
-// add active to clicked
+    // add active to clicked
 
-tab.classList.add("tab-active");
+    tab.classList.add("tab-active");
 
-tab.classList.add("active-tab");
+    tab.classList.add("active-tab");
 
-activeFilter = tab.dataset.filter;
+    activeFilter = tab.dataset.filter;
 
-filterCards(activeFilter);
+    filterCards(activeFilter);
+
+    };
+
+    });
+
+
+    // TotalCount element select
+const totalElement = document.getElementById("totalCount");
+
+
+// TotalCount update function
+function updateTotalCount(){
+
+const total = document.querySelectorAll("#jobContainer .card").length;
+
+totalElement.innerText = total;
+
+}
+
+updateTotalCount();
+
+// JobsCount element select
+const jobsElement = document.getElementById("jobsCount");
+
+
+// JobsCount update function
+function updateJobsCount(){
+
+const total = document.querySelectorAll("#jobContainer .card").length;
+
+const visible = document.querySelectorAll('#jobContainer .card:not([style*="display: none"])').length;
+
+jobsElement.innerText = total + " jobs";
+
+}
+
+updateJobsCount();
+
+// DELETE BUTTON FUNCTION
+
+const deleteButtons = document.querySelectorAll(".fa-trash");
+
+deleteButtons.forEach(deleteBtn => {
+
+deleteBtn.onclick = function(){
+
+const card = this.closest(".card");
+
+card.remove();
+
+updateTotalCount();
+
+updateJobsCount();
 
 };
 
 });
 
-  </script>
+</script>
 </body>
 
 </html>
