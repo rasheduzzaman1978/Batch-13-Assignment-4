@@ -680,7 +680,40 @@
   </div>
   </div>
 
-  <script></script>
+  <script>
+    
+// ---------------- TAB EVENTS ----------------
+const tabs = document.querySelectorAll(".tab");
+
+tabs.forEach(tab => {
+
+tab.onclick = () => {
+
+// remove active from all
+
+tabs.forEach(t => {
+
+t.classList.remove("tab-active");
+
+t.classList.remove("active-tab");
+
+});
+
+// add active to clicked
+
+tab.classList.add("tab-active");
+
+tab.classList.add("active-tab");
+
+activeFilter = tab.dataset.filter;
+
+filterCards(activeFilter);
+
+};
+
+});
+
+  </script>
 </body>
 
 </html>
