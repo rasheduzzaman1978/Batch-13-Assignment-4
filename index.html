@@ -766,6 +766,170 @@ updateJobsCount();
 
 });
 
+// Interview button select
+const interviewButtons = document.querySelectorAll(".btn-success");
+
+// Interview count
+let interviewCount = 0;
+
+interviewButtons.forEach(button => {
+
+button.onclick = function(){
+
+// card select
+const card = this.closest(".card");
+
+// badge select
+const badge = card.querySelector(".badge");
+
+// previous status
+const status = badge.innerText;
+
+
+// যদি আগে rejected থাকে → rejected কমবে
+if(status === "REJECTED"){
+
+rejectedCount--;
+updateRejectedCount();
+
+}
+
+
+// যদি already interview না হয়
+if(status !== "INTERVIEW"){
+
+badge.innerText = "INTERVIEW";
+
+badge.classList.remove("badge-outline","badge-error");
+
+badge.classList.add("badge-success");
+
+interviewCount++;
+
+updateInterviewCount();
+
+}
+
+
+};
+
+});
+
+
+// Interview count update
+function updateInterviewCount(){
+
+document.getElementById("interviewCount").innerText = interviewCount;
+
+}
+
+// Rejected button select
+const rejectedButtons = document.querySelectorAll(".btn-error");
+
+// Rejected count
+let rejectedCount = 0;
+
+rejectedButtons.forEach(button => {
+
+button.onclick = function(){
+
+const card = this.closest(".card");
+
+const badge = card.querySelector(".badge");
+
+const status = badge.innerText;
+
+
+// যদি আগে interview থাকে → interview কমবে
+if(status === "INTERVIEW"){
+
+interviewCount--;
+updateInterviewCount(); 
+
+}
+
+
+// যদি already rejected না হয়
+if(status !== "REJECTED"){
+
+badge.innerText = "REJECTED";
+
+badge.classList.remove("badge-outline","badge-success");
+
+badge.classList.add("badge-error");
+
+rejectedCount++;
+
+updateRejectedCount();
+
+}
+
+
+};
+
+});
+
+
+// Rejected count update
+function updateRejectedCount(){
+
+document.getElementById("rejectedCount").innerText = rejectedCount;
+
+}
+
+// To show Information Interview/Rejected Tab 
+const tabs2 = document.querySelectorAll('.tab');
+
+tabs2.forEach(tab => {
+
+tab.onclick = function(){
+
+const filter = this.dataset.filter;
+
+const cards = document.querySelectorAll("#jobContainer .card");
+
+cards.forEach(card => {
+
+const status = card.querySelector(".badge").innerText.toLowerCase();
+
+
+// All tab
+if(filter === "all"){
+
+card.style.display = "block";
+
+}
+
+
+// Interview tab
+else if(filter === "interview" && status === "interview"){
+
+card.style.display = "block";
+
+}
+
+
+// Rejected tab
+else if(filter === "rejected" && status === "rejected"){
+
+card.style.display = "block";
+
+}
+
+
+// hide others
+else{
+
+card.style.display = "none";
+
+}
+
+});
+
+};
+
+});
+
 </script>
 </body>
 
