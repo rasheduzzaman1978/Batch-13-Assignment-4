@@ -30,4 +30,16 @@ This is called bubbling.
 
 ### 4. What is Event Delegation in JavaScript? Why is it useful?
 
+Answer: Event Delegation is a technique in JavaScript where a parent element handles events for its child elements using event bubbling.
+
+It is useful, because:
+  a. Better performance
+  b. Less memory
+  c. Works for dynamic elements
+
 ### 5. What is the difference between preventDefault() and stopPropagation() methods?
+
+Answer: Both preventDefault() and stopPropagation() are event methods in JavaScript, but they do completely different things.
+
+  * preventDefault() stops the browser's default action.
+  * stopPropagation() stops event bubbling (parent event will not run).
